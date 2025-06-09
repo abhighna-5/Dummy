@@ -1,0 +1,109 @@
+<div class="container">
+  <h2>Employee Feedback</h2>
+  <form class="requires-validation" novalidate>
+    <!-- From Employee ID (Disabled) -->
+    <div class="form-group">
+      <label for="fromEmployee">
+        <i class="far fa-user"></i> From Employee ID
+      </label>
+      <input
+        class="form-control"
+        type="number"
+        id="fromEmployee"
+        name="fromEmployee"
+        [(ngModel)]="feedbackRequest.fromEmployeeId"
+        disabled
+      />
+    </div>
+
+    <!-- To Employee ID Selector -->
+    <div class="form-group">
+      <label for="toEmployee">Select Employee ID:</label>
+      <select
+        class="form-select"
+        id="toEmployee"
+        name="toEmployee"
+        [(ngModel)]="feedbackRequest.toEmployeeId"
+      >
+        <option *ngFor="let empId of employeeIds" [value]="empId">
+          {{ empId }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Feedback Type Buttons -->
+    <div class="form-group">
+      <label>Feedback Type:</label>
+      <div class="button-group">
+        <button
+          type="button"
+          [class.selected]="feedbackRequest.feedbackType === FeedbackType.PEER"
+          (click)="setFeedbackType(FeedbackType.PEER)"
+        >
+          Peer
+        </button>
+        <button
+          type="button"
+          [class.selected]="feedbackRequest.feedbackType === FeedbackType.SUPERIOR"
+          (click)="setFeedbackType(FeedbackType.SUPERIOR)"
+        >
+          Superior
+        </button>
+        <button
+          type="button"
+          [class.selected]="feedbackRequest.feedbackType === FeedbackType.SUBORDINATE"
+          (click)="setFeedbackType(FeedbackType.SUBORDINATE)"
+        >
+          Subordinate
+        </button>
+      </div>
+    </div>
+
+    <!-- Comments Buttons -->
+    <div class="form-group">
+      <label>Comments:</label>
+      <div class="button-group">
+        <button
+          type="button"
+          [class.selected]="feedbackRequest.comments === FeedbackCommentType.GOOD"
+          (click)="setComment(FeedbackCommentType.GOOD)"
+        >
+          Good
+        </button>
+        <button
+          type="button"
+          [class.selected]="feedbackRequest.comments === FeedbackCommentType.BAD"
+          (click)="setComment(FeedbackCommentType.BAD)"
+        >
+          Bad
+        </button>
+        <button
+          type="button"
+          [class.selected]="feedbackRequest.comments === FeedbackCommentType.AVERAGE"
+          (click)="setComment(FeedbackCommentType.AVERAGE)"
+        >
+          Average
+        </button>
+      </div>
+    </div>
+
+    <!-- Reason Textarea -->
+    <div class="form-group">
+      <label for="reason">
+        <i class="far fa-edit"></i> Reason
+      </label>
+      <textarea
+        class="form-control"
+        id="reason"
+        name="reason"
+        placeholder="Provide additional comments"
+        [(ngModel)]="feedbackRequest.reason"
+      ></textarea>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="submit-btn" (click)="submitFeedback()">
+      Submit Feedback
+    </button>
+  </form>
+</div>

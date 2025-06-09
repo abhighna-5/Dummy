@@ -1,0 +1,54 @@
+/* Navbar Styling */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #dc3545; /* Bootstrap danger color */
+  color: white;
+  padding: 15px 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Keeps navbar on top */
+}
+
+/* Main Feedback Container
+   The margin-top ensures the whole container starts below the fixed navbar.
+   Removed margin-left to let Bootstrap’s grid handle horizontal spacing. */
+.feedback-container {
+  margin-top: 100px; /* Adjust as needed based on your navbar's height */
+  /* Removed margin-left: 80px; */
+  padding: 0 15px; /* Optional: add horizontal padding if needed */
+}
+
+/* Feedback Title Styling */
+.feedback-title {
+  margin-bottom: 20px;
+}
+
+/* Feedback Content Styling
+   Removed margin-left to allow the grid to align the content properly */
+.feedback-content {
+  margin-top: 10px; /* Adjust space below the tab buttons if needed */
+}
+
+/* Tab Buttons Styling */
+.tab-buttons button {
+  background: #6c5ce7;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.tab-buttons button.active,
+.tab-buttons button:hover {
+  background: #a29bfe;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .feedback-container {
+    margin-top: 100px;
+  }
+}

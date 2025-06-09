@@ -1,0 +1,39 @@
+<div>
+    <app-navbar class="navbar fixed-top bg-danger text-white"></app-navbar>
+  </div>
+  
+  <div class="feedback-container container-fluid">
+    <!-- Title Row -->
+    <div class="row">
+      <div class="col-12">
+        <h2 class="feedback-title">Feedback</h2>
+      </div>
+    </div>
+    
+    <!-- Main Content Row with Sidebar and Feedback Component -->
+    <div class="row">
+      <!-- Sidebar Column -->
+      <div class="col-12 col-md-2">
+        <app-sidebar></app-sidebar>
+      </div>
+      
+      <!-- Feedback Component Column -->
+      <div class="col-12 col-md-10">
+        <div class="tab-buttons d-flex justify-content-center gap-3 mt-2">
+          <button (click)="showAddFeedback()" [class.active]="selectedTab === 'addFeedback'">
+            Add Feedback
+          </button>
+          <button (click)="showGetFeedback()" [class.active]="selectedTab === 'getFeedback'">
+            Get Feedback
+          </button>
+        </div>
+        
+        
+        <div class="feedback-content">
+          <app-add-feedback *ngIf="selectedTab === 'addFeedback'"></app-add-feedback>
+          <app-get-feedback *ngIf="selectedTab === 'getFeedback'"></app-get-feedback>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,48 @@
+<label for="filterType">Filter Feedback By:</label>
+<select [(ngModel)]="selectedFilterType">
+  <option value="">All</option> <!-- ✅ Default option -->
+  <option value="toEmployeeId">Employee ID</option>
+  <option value="date">Date</option>
+  <option value="feedbackType">Feedback Type</option>
+</select>
+
+<!-- ✅ Show correct input based on selection -->
+<input *ngIf="selectedFilterType === 'toEmployeeId'" type="number" [(ngModel)]="searchEmployeeId" placeholder="Enter Employee ID">
+<input *ngIf="selectedFilterType === 'date'" type="date" [(ngModel)]="searchDate">
+<select *ngIf="selectedFilterType === 'feedbackType'" [(ngModel)]="searchFeedbackType">
+  <option *ngFor="let type of feedbackTypes" [value]="type">{{ type }}</option>
+</select>
+
+<button (click)="filterFeedbacks()">Apply Filter</button>
+
+
+
+<div class="container">
+
+  <table class="table table-striped table-hover">
+    <thead class="bg-primary text-white">
+      <tr>
+        <th>From Employee</th>
+        <th>To Employee</th>
+        <th>Date</th>
+        <th>Feedback Type</th>
+        <th>Comments</th>
+        <th>Reason</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let feedback of filteredFeedbacks">
+        <td>{{ feedback.fromEmployeeId }}</td>
+        <td>{{ feedback.toEmployeeId }}</td>
+        <td>{{ feedback.date }}</td>
+        <td>{{ feedback.feedbackType }}</td>
+        <td>{{ feedback.comments }}</td>
+        <td>{{ feedback.reason || 'N/A' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="feedbacks.length === 0" class="alert alert-warning text-center">
+    No feedback available.
+  </p>
+</div>
